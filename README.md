@@ -23,7 +23,7 @@ The game will be developed using React, Postgres and Express.
 
 To date, there have been no expenditures for this project.
 
-Table of Contents
+## Table of Contents
 
   - [Team Names](#team-ck)
   - [Project Abstract](#project-abstract)
