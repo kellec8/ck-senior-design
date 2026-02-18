@@ -12,7 +12,7 @@ const GameContext = createContext<GameState | null>(null);
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [score, setScore] = useState(0);
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = useState(50);
 
   return (
     <GameContext.Provider value={{
