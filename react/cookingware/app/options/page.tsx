@@ -4,13 +4,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation"
 import { Slider } from '@mui/material/'
 import * as React from 'react'
+import { useGame } from '../context/GameContext'
 
 export default function options() {
   const router = useRouter()
-  const [value, setValue] = React.useState<number>(50);
+  const {volume, setVolume} = useGame();
 
   const handleChange = (event: Event, newValue: number) => {
-    setValue(newValue);
+    setVolume(newValue);
   }
 
   return (
@@ -19,9 +20,9 @@ export default function options() {
         Options
       </h1>
       <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
-        Audio: {value}%
+        Audio: {volume}%
       </h1>
-      <Slider value={value} onChange={handleChange} style={{width:'30rem'}}/>
+      <Slider value={volume} onChange={handleChange} style={{width:'30rem'}}/>
       <button type="button" onClick={() => router.push('/options/credits')} className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50" style={{cursor:'pointer'}}>
         Credits
       </button>
