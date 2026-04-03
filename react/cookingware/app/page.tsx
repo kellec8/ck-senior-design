@@ -10,13 +10,13 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
-      <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
+      <h1 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50" style={{fontSize:"10rem"}}>
         CookingWare
       </h1>
-      <button type="button" onClick={() => router.push('/game')} className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50" style={{cursor:'pointer'}}>
+      <button type="button" onClick={() => router.push('/game')} className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50" style={{cursor:'pointer',fontSize:"10rem"}}>
         Play
       </button>
-      <button type="button" onClick={() => router.push('/options')} className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50" style={{cursor:'pointer'}}>
+      <button type="button" onClick={() => router.push('/options')} className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50" style={{cursor:'pointer',fontSize:"10rem"}}>
         Options
       </button>
     </div>
