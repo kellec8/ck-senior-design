@@ -8,8 +8,14 @@ import { useState } from "react";
 import { useGame } from "../context/GameContext";
 import EndScreen from "../components/EndScreen"
 
+type GameProps = {
+    onWin: () => void;
+    onLose: () => void;
+    volume: number;
+    lives: number;
+}
 
-export default function FridgeGame({onWin, onLose, volume, lives}) {
+export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
     const foods = [
         { name: "KFC", src: "FRIDGE/FOOD/Untitled.png", pos: 0 },
         { name: "Grilled Cheese", src: "FRIDGE/FOOD/food2.jpg", pos: 0 },
