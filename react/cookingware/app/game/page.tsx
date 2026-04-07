@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGame } from "../context/GameContext";
 import SoupGame from "../games/SoupGame";
 import FridgeGame from "../games/FridgeGame";
+import PopcornGame from "../games/PopcornGame";
 import EndScreen from "../components/EndScreen";
 import { useRouter } from "next/navigation";
 
@@ -20,6 +21,7 @@ export default function Game() {
   const games = [
     FridgeGame,
     SoupGame,
+    PopcornGame,
   ];
 
   const lossAudio = useRef<HTMLAudioElement | null>(null);
