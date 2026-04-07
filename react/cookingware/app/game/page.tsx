@@ -5,6 +5,7 @@ import { useGame } from "../context/GameContext";
 import SoupGame from "../games/SoupGame";
 import FridgeGame from "../games/FridgeGame";
 import PopcornGame from "../games/PopcornGame";
+import FloorGame from "../games/FloorGame";
 import EndScreen from "../components/EndScreen";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +15,6 @@ export default function Game() {
   const { lives, setLives, volume } = useGame();
 
   const [gameState, setGameState] = useState("playing"); 
-  // "playing" | "won" | "lost" | "gameover"
 
   const [currentGame, setCurrentGame] = useState(0);
 
@@ -22,6 +22,7 @@ export default function Game() {
     FridgeGame,
     SoupGame,
     PopcornGame,
+    FloorGame
   ];
 
   const lossAudio = useRef<HTMLAudioElement | null>(null);
