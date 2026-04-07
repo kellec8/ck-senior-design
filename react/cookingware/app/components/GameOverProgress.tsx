@@ -1,10 +1,10 @@
 
 type GameOverProps = {
   timeLimit: number;
-  timeSpend: number;
+  timeSpent: number;
 }
 
-export default function GameOverProgress({ timeLimit, timeSpent }) {
+export default function GameOverProgress({ timeLimit, timeSpent }: GameOverProps) {
   const remaining = Math.max(0, timeLimit - timeSpent);
 
   return (
