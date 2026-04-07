@@ -35,7 +35,7 @@ export default function GroceryListGame({onWin, onLose, volume, lives}: GameProp
     const [visibleCount, setVisibleCount] = useState(0);
     const [playerAnswers, setPlayerAnswers] = useState<string[]>([]);
     const [timeSpent, setTimeSpent] = useState(0);
-    const [timeLimit, setTimeLimit] = useState(10);
+    const [timeLimit, setTimeLimit] = useState(20);
 
     const handleClick = (food: Food) => {
         scribbleAudio.current?.play();

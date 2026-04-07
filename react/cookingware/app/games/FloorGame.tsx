@@ -34,7 +34,7 @@ const words = [
 export default function FloorGame({onWin, onLose, volume, lives}: GameProps) {
     const [germs, setGerms] = useState<Germ[]>([]);
     const [input, setInput] = useState("");
-    const [timeLimit, setTimeLimit] = useState(10);
+    const [timeLimit, setTimeLimit] = useState(20);
     const [timeSpent, setTimeSpent] = useState(0);
 
     const splatAudio = useRef<HTMLAudioElement | null>(null);
@@ -131,7 +131,7 @@ export default function FloorGame({onWin, onLose, volume, lives}: GameProps) {
     return (
     <div>
         <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
-        {(1 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, WebkitTextStroke:"2px black", textAlign:"center"}}>Protect the food!</h1>}
+        {(5 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, WebkitTextStroke:"2px black", textAlign:"center"}}>Protect the food!</h1>}
         {germs.map((g, index) => 
         g.visible && (
             <div key={index} style={{ position: "absolute", display: "inline-block", left:`${g.left}vw`, top:`${g.top}vh`, zIndex:10 }}>

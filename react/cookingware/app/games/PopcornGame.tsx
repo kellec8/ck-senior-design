@@ -27,11 +27,11 @@ const foodStyle = (popcorn: popcorn): CSSProperties => ({
     zIndex: 10
 })
 
-const popcornLimit = 10;
+const popcornLimit = 8;
 
 export default function PopcornGame({onWin, onLose, volume, lives}: GameProps) {
     const [timeSpent, setTimeSpent] = useState(0);
-    const [timeLimit, setTimeLimit] = useState(10);
+    const [timeLimit, setTimeLimit] = useState(20);
     const [popcornArray, setPopcornArray] = useState<popcorn[]>(() => 
         Array.from({ length: popcornLimit }, () => ({
             popped: false,
@@ -116,7 +116,7 @@ export default function PopcornGame({onWin, onLose, volume, lives}: GameProps) {
     return (
         <div>
             <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
-            {(1 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, textAlign:"center", WebkitTextStroke:"2px black"}}>Pop the Corn!</h1>}
+            {(5 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, textAlign:"center", WebkitTextStroke:"2px black"}}>Pop the Corn!</h1>}
 
             {popcornArray.map((popcorn, index) =>
                 popcorn.visible && (<img src={popcorn.popped ? "POPCORN/Popcorn.png" : "POPCORN/Kernel.png"} key={index} onClick={() => handleClick(popcorn, index)} style={foodStyle(popcorn)}></img>

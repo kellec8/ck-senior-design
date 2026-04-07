@@ -21,8 +21,8 @@ export default function SoupGame({onWin, onLose, volume, lives}: GameProps) {
     const prevHoverRef = useRef("");
     const [progress, setProgress] = useState(0);
 
-    const [goal, setGoal] = useState(40);
-    const [timeLimit, setTimeLimit] = useState(10);
+    const [goal, setGoal] = useState(20);
+    const [timeLimit, setTimeLimit] = useState(20);
 
     const lost = () =>  {return timeLimit < timeSpent};
 
@@ -119,7 +119,7 @@ export default function SoupGame({onWin, onLose, volume, lives}: GameProps) {
     return (
     <div>
         <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
-                {(1 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:99, textAlign:"center", WebkitTextStroke:"2px black"}}>Stir the soup clockwise!</h1>}
+                {(5 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:99, textAlign:"center", WebkitTextStroke:"2px black"}}>Stir the soup clockwise!</h1>}
         <img src={"SOUP\\" + hover + ".png"} style={soupStyle}></img>
         <div style={{...quarterScreen, position: "fixed", top: 0, left: 0, zIndex:100}} onMouseEnter={() => {handleHoverChange("topleft")}}></div>
         <div style={{...quarterScreen, position: "fixed", top: 0, right: 0, zIndex:100}} onMouseEnter={() => handleHoverChange("topright")}></div>

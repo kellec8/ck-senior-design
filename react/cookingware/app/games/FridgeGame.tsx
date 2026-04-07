@@ -53,7 +53,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
 
     const [foodArray, setFoodArray] = useState(shuffleArray(foods));
     const [timeSpent, setTimeSpent] = useState(0)
-    const [timeLimit, setTimeLimit] = useState(10);
+    const [timeLimit, setTimeLimit] = useState(20);
     const [goalFood, setGoalFood] = useState(foodArray?.at(-1));
 
     const [foodStack, setFoodStack] = useState(shuffleArray(
@@ -138,7 +138,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
         <div>
             <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
             
-            {(1 > timeSpent) && goalFood && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, textAlign:"center", WebkitTextStroke:"2px black"}}>Find the {goalFood.name}</h1>}
+            {(5 > timeSpent) && goalFood && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, textAlign:"center", WebkitTextStroke:"2px black"}}>Find the {goalFood.name}</h1>}
 
             {foodStack[0].map((food, index) => (
                 <img
