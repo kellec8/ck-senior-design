@@ -61,7 +61,7 @@ export default function GroceryListGame({onWin, onLose, volume, lives}: GameProp
     useEffect(() => {
         setTimeout(() => {
             setPhase("revealing")
-        }, 1000)
+        }, 5000)
     }, [])
 
     const allFoods = [
