@@ -5,11 +5,17 @@ import { useRouter } from "next/navigation"
 import { relative } from "path";
 import { Children, useContext, useEffect, useRef } from "react";
 import { useState } from "react";
-import stirNoise from "..\\..\\SOUP\\stirnoise.m4a"
 import { useGame } from "../context/GameContext";
 import EndScreen from "../components/EndScreen"
 
-export default function SoupGame({onWin, onLose, volume, lives}) {
+type GameProps = {
+    onWin: () => void;
+    onLose: () => void;
+    volume: number;
+    lives: number;
+}
+
+export default function SoupGame({onWin, onLose, volume, lives}: GameProps) {
     const [timeSpent, setTimeSpent] = useState(0)
     const [hover, setHover] = useState("topright")
     const prevHoverRef = useRef("");
