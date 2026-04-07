@@ -1,4 +1,5 @@
 import { CSSProperties, useEffect, useRef, useState } from "react";
+import Hearts from "../components/Hearts";
 
 
 type GameProps = {
@@ -23,8 +24,8 @@ const foodStyle = (pos: number, index: number, row: number): CSSProperties => ({
     left: `${pos}vw`,
     zIndex: 500 - index,
     cursor: "pointer",
-    width: "150px",
-    height: "150px",
+    width: "20vh",
+    height: "20vh",
     objectFit: "contain",
 })
 
@@ -64,18 +65,18 @@ export default function GroceryListGame({onWin, onLose, volume, lives}: GameProp
     }, [])
 
     const allFoods = [
-        { name: "KFC", src: "FRIDGE/FOOD/Untitled.png", pos: 15, index: 0 },
-        { name: "Grilled Cheese", src: "FRIDGE/FOOD/GrilledCheese.png", pos: 35, index: 0 },
-        { name: "Fruit", src: "FRIDGE/FOOD/Fruit.png", pos: 55, index: 0 },
-        { name: "Donut", src: "FRIDGE/FOOD/Donut.png", pos: 75, index: 0 },
-        { name: "Burger", src: "FRIDGE/FOOD/Burger.png", pos: 15, index: 0 },
-        { name: "Cheese", src: "FRIDGE/FOOD/Cheese.png", pos: 35, index: 0 },
-        { name: "Ketchup", src: "FRIDGE/FOOD/Ketchup.png", pos: 55, index: 0 },
-        { name: "Mustard", src: "FRIDGE/FOOD/Mustard.png", pos: 75, index: 0 },
-        { name: "Milk", src: "FRIDGE/FOOD/Milk.png", pos: 15, index: 0},
-        { name: "Butter", src: "FRIDGE/FOOD/Butter.png", pos: 35, index: 0 },
-        { name: "Salad", src: "FRIDGE/FOOD/Salad.png", pos: 55, index: 0 },
-        { name: "Soup", src: "SOUP/topleft.png", pos: 75, index: 0 },
+        { name: "KFC", src: "FRIDGE/FOOD/Untitled.png", pos: 10, index: 0 },
+        { name: "Grilled Cheese", src: "FRIDGE/FOOD/GrilledCheese.png", pos: 30, index: 0 },
+        { name: "Fruit", src: "FRIDGE/FOOD/Fruit.png", pos: 50, index: 0 },
+        { name: "Donut", src: "FRIDGE/FOOD/Donut.png", pos: 70, index: 0 },
+        { name: "Burger", src: "FRIDGE/FOOD/Burger.png", pos: 10, index: 0 },
+        { name: "Cheese", src: "FRIDGE/FOOD/Cheese.png", pos: 30, index: 0 },
+        { name: "Ketchup", src: "FRIDGE/FOOD/Ketchup.png", pos: 50, index: 0 },
+        { name: "Mustard", src: "FRIDGE/FOOD/Mustard.png", pos: 70, index: 0 },
+        { name: "Milk", src: "FRIDGE/FOOD/Milk.png", pos: 10, index: 0},
+        { name: "Butter", src: "FRIDGE/FOOD/Butter.png", pos: 30, index: 0 },
+        { name: "Salad", src: "FRIDGE/FOOD/Salad.png", pos: 50, index: 0 },
+        { name: "Soup", src: "SOUP/topleft.png", pos: 70, index: 0 },
     ]
 
     useEffect(() => {
@@ -159,13 +160,8 @@ export default function GroceryListGame({onWin, onLose, volume, lives}: GameProp
 
     <progress style={{position: "fixed", bottom: 0, zIndex: 2, width:"100vw", height:"2.5vh"}} value={timeLimit-timeSpent} max={timeLimit}></progress>
     <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"0", zIndex:2, left:"2.5vw"}}>{Math.round(Math.max(timeLimit-timeSpent, 0))}</h1>
-    { lives > 0 ? <img src="full_heart.png" style={{position:"fixed", zIndex: 2, height:"10vh", width:"10vh", bottom:"2.5vh", right:0, imageRendering:"pixelated"}}></img> : <img src="empty_heart.png" style={{position:"fixed", zIndex: 2, height:"10vh", width:"10vh", bottom:"2.5vh", right:0, imageRendering:"pixelated"}}></img>}
-    { lives > 1 ? <img src="full_heart.png" style={{position:"fixed", zIndex: 2, height:"10vh", width:"10vh", bottom:"2.5vh", right:"10vh", imageRendering:"pixelated"}}></img> : <img src="empty_heart.png" style={{position:"fixed", zIndex: 2, height:"10vh", width:"10vh", bottom:"2.5vh", right:"10vh", imageRendering:"pixelated"}}></img>}
-    { lives > 2 ? <img src="full_heart.png" style={{position:"fixed", zIndex: 2, height:"10vh", width:"10vh", bottom:"2.5vh", right:"20vh", imageRendering:"pixelated"}}></img> : <img src="empty_heart.png" style={{position:"fixed", zIndex: 2, height:"10vh", width:"10vh", bottom:"2.5vh", right:"20vh", imageRendering:"pixelated"}}></img>}
-
+    <Hearts lives={lives}></Hearts>
     </div>
-
-
     )
 
 }
