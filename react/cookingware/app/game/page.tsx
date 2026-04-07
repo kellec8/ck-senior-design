@@ -6,6 +6,7 @@ import SoupGame from "../games/SoupGame";
 import FridgeGame from "../games/FridgeGame";
 import PopcornGame from "../games/PopcornGame";
 import FloorGame from "../games/FloorGame";
+import GroceryListGame from "../games/GroceryListGame";
 import EndScreen from "../components/EndScreen";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +23,8 @@ export default function Game() {
     FridgeGame,
     SoupGame,
     PopcornGame,
-    FloorGame
+    FloorGame,
+    GroceryListGame,
   ];
 
   const lossAudio = useRef<HTMLAudioElement | null>(null);

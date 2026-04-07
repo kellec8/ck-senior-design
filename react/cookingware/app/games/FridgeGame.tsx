@@ -138,7 +138,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
         <div>
             <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
             
-            {(1 > timeSpent) && goalFood && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, WebkitTextStroke:"2px black"}}>Find the {goalFood.name}</h1>}
+            {(1 > timeSpent) && goalFood && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, textAlign:"center", WebkitTextStroke:"2px black"}}>Find the {goalFood.name}</h1>}
 
             {foodStack[0].map((food, index) => (
                 <img

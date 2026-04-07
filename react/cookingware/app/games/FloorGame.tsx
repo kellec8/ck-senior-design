@@ -86,7 +86,7 @@ export default function FloorGame({onWin, onLose, volume, lives}: GameProps) {
                 killed: false,
             };
             setGerms(prev => [...prev, newGerm]);
-        }, 2000);
+        }, 1750);
 
         return () => clearInterval(interval);
     }, []);  // run only once
@@ -131,7 +131,7 @@ export default function FloorGame({onWin, onLose, volume, lives}: GameProps) {
     return (
     <div>
         <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
-        {(1 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, WebkitTextStroke:"2px black"}}>Protect the food!</h1>}
+        {(1 > timeSpent) && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, WebkitTextStroke:"2px black", textAlign:"center"}}>Protect the food!</h1>}
         {germs.map((g, index) => 
         g.visible && (
             <div key={index} style={{ position: "absolute", display: "inline-block", left:`${g.left}vw`, top:`${g.top}vh`, zIndex:10 }}>
@@ -159,8 +159,9 @@ export default function FloorGame({onWin, onLose, volume, lives}: GameProps) {
         <input 
         type="text" 
         value={input} 
+        placeholder="TYPE HERE TO EXTERMINATE"
         onChange={handleInput} 
-        style={{position: "fixed", width:"10vw", left: "45vw", top:"50vh", backgroundColor:"darkgray", zIndex:10, border:"1px solid black"}}
+        style={{position: "fixed", width:"20vw", left: "50w", top:"50vh", backgroundColor:"darkgray", zIndex:10, border:"1px solid black", color:"black", textAlign:"center"}}
         />
         <img src="Floorgame/Cake.png" style={{position: "fixed", left:"30vw", top:"30vh", width:"40vw", height:"40vh"}}></img>
 
