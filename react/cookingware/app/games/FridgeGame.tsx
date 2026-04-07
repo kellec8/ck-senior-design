@@ -7,6 +7,7 @@ import { Children, useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import { useGame } from "../context/GameContext";
 import EndScreen from "../components/EndScreen"
+import { CSSProperties } from "react";
 
 type GameProps = {
     onWin: () => void;
@@ -14,6 +15,23 @@ type GameProps = {
     volume: number;
     lives: number;
 }
+
+type FoodType = {
+    name: string;
+    src: string;
+    pos: number;
+}
+
+const foodStyle = (pos: number, index: number): CSSProperties => ({
+    position: "absolute",
+    top: 90,
+    left: `${pos}vw`,
+    zIndex: 100 - index,
+    cursor: "pointer",
+    width: "150px",
+    height: "150px",
+    objectFit: "contain",
+})
 
 export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
     const foods = [
@@ -27,27 +45,28 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
     const [timeSpent, setTimeSpent] = useState(0)
     const [timeLimit, setTimeLimit] = useState(10);
     const [goalFood, setGoalFood] = useState(foodArray?.at(-1));
+
     const [foodStack, setFoodStack] = useState(shuffleArray(
     [foods.map(food => ({
         ...food,
         pos: Math.random() * 20 + 35,
-    })), 
-    foods.filter(food => food.name !== goalFood.name).map(food => ({
+    })),
+    foods.filter(food => food.name !== goalFood?.name).map(food => ({
         ...food,
         pos: Math.random() * 20 + 35,
     })), 
-    foods.filter(food => food.name !== goalFood.name).map(food => ({
+    foods.filter(food => food.name !== goalFood?.name).map(food => ({
         ...food,
         pos: Math.random() * 20 + 35,
     }))]));
 
-    function shuffleArray(array) {
+    function shuffleArray<T>(array: T[]): T[] {
         return [...array].sort(() => Math.random() - 0.5);
     }
 
     const lost = () =>  {return timeLimit < timeSpent};
 
-    const fridgeStyle = {
+    const fridgeStyle: CSSProperties = {
         height: '87.5vh',
         width: '100vw',
         top: 0,
@@ -81,8 +100,8 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
         }
     }, [lost, onLose]);
 
-    const handleClick = (clickedFood, index) => {
-        if (clickedFood.name === goalFood.name)
+    const handleClick = (clickedFood: FoodType, index: number) => {
+        if (clickedFood.name === goalFood?.name)
             onWin();
         else {
             setFoodStack(prev => {
@@ -108,16 +127,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
                     src={food.src}
                     key={food.name}
                     onClick={() => handleClick(food, 0)}
-                    style={{
-                        position: "absolute",
-                        top: `90px`,
-                        left: `${food.pos}vw`,
-                        zIndex: 100 - index,
-                        cursor: "pointer",
-                        width: "150px",
-                        height: "150px",
-                        objectFit: "contain",
-                    }}
+                    style={foodStyle(food.pos, index)}
                 />
             ))}
 
@@ -126,17 +136,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
                     src={food.src}
                     key={food.name}
                     onClick={() => handleClick(food, 1)}
-                    style={{
-                        position: "absolute",
-                        top: `225px`,
-                        left: `${food.pos}vw`,
-                        zIndex: 100 - index,
-                        cursor: "pointer",
-                        width: "150px",
-                        height: "150px",
-                        objectFit: "contain",
-                    }}
-                />
+                    style={foodStyle(food.pos, index)}                />
             ))}
 
             {foodStack[2].map((food, index) => (
@@ -144,16 +144,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
                     src={food.src}
                     key={food.name}
                     onClick={() => handleClick(food, 2)}
-                    style={{
-                        position: "absolute",
-                        top: `400px`,
-                        left: `${food.pos}vw`,
-                        zIndex: 100 - index,
-                        cursor: "pointer",
-                        width: "150px",
-                        height: "150px",
-                        objectFit: "contain",
-                    }}
+                    style={foodStyle(food.pos, index)}
                 />
             ))}
 

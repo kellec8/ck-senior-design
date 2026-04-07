@@ -1,5 +1,11 @@
-export default function Hearts({ lives }) {
-  const heartStyle = (offset) => ({
+import { CSSProperties } from "react";
+
+type HeartsProps = {
+  lives: number;
+}
+
+export default function Hearts({ lives }: HeartsProps) {
+  const heartStyle = (offset: number): CSSProperties => ({
     position: "fixed",
     zIndex: 2,
     height: "10vh",

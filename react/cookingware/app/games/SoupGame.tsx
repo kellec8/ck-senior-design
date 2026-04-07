@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation"
 import { relative } from "path";
-import { Children, useContext, useEffect, useRef } from "react";
+import { Children, CSSProperties, useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import { useGame } from "../context/GameContext";
 import EndScreen from "../components/EndScreen"
@@ -38,7 +38,7 @@ export default function SoupGame({onWin, onLose, volume, lives}: GameProps) {
         stirAudio.current.preload = "auto";
     }, [])
 
-    const soupStyle = {
+    const soupStyle: CSSProperties = {
         height: '100vh',
         width: '100vw',
         objectFit: "contain",
@@ -109,10 +109,10 @@ export default function SoupGame({onWin, onLose, volume, lives}: GameProps) {
         prevHoverRef.current = hover;
     }, [hover])
 
-    function handleHoverChange(direction) {
+    function handleHoverChange(direction: string) {
         setHover(direction)
         if(stirAudio)
-            stirAudio.current.play();
+            stirAudio.current?.play();
     }
 
     return (

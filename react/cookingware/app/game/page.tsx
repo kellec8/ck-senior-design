@@ -41,7 +41,8 @@ export default function Game() {
 
   function handleWin() {
     setGameState("won");
-    winAudio.current.play();
+    if(winAudio.current)
+      winAudio.current.play();
 
     setTimeout(() => {
       nextGame();
@@ -50,9 +51,10 @@ export default function Game() {
 
   function handleLose() {
     setGameState("lost");
-    lossAudio.current.play()
+    if(lossAudio.current)
+      lossAudio.current.play()
 
-    setLives(l => l - 1);
+    setLives(lives - 1);
 
     setTimeout(() => {
       if (lives - 1 <= 0) {
