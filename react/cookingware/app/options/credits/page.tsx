@@ -14,7 +14,7 @@ export default function credits() {
         Developed by Chase Keller
       </h1>
       <h1 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50">
-        Art by Ben Palmer
+        Art by Ben Palmer and Kate Hoch-Howard
       </h1>
       <button type="button" onClick={() => router.push('../options')} className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50" style={{cursor:'pointer'}}>
         Back
