@@ -39,10 +39,11 @@ export default function SoupGame({onWin, onLose, volume, lives}: GameProps) {
     }, [])
 
     const soupStyle: CSSProperties = {
-        height: '100vh',
-        width: '100vw',
+        height: '90vh',
+        width: '90vw',
         objectFit: "contain",
-        zIndex: 1
+        zIndex: 1,
+        overflow: "hidden",
     }
 
     const quarterScreen = {
