@@ -20,13 +20,14 @@ type FoodType = {
     name: string;
     src: string;
     pos: number;
+    index: number;
 }
 
-const foodStyle = (pos: number, index: number): CSSProperties => ({
+const foodStyle = (pos: number, index: number, row: number): CSSProperties => ({
     position: "absolute",
-    top: 90,
+    top: row == 0 ? "10vh" : row == 1 ? "25vh" : "40vh",
     left: `${pos}vw`,
-    zIndex: 100 - index,
+    zIndex: 500 - index,
     cursor: "pointer",
     width: "150px",
     height: "150px",
@@ -35,10 +36,19 @@ const foodStyle = (pos: number, index: number): CSSProperties => ({
 
 export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
     const foods = [
-        { name: "KFC", src: "FRIDGE/FOOD/Untitled.png", pos: 0 },
-        { name: "Grilled Cheese", src: "FRIDGE/FOOD/food2.jpg", pos: 0 },
-        { name: "Fruit", src: "FRIDGE/FOOD/food3.webp", pos: 0 },
-        { name: "Junk Food", src: "FRIDGE/FOOD/food4.jpg", pos: 0 },
+        { name: "KFC", src: "FRIDGE/FOOD/Untitled.png", pos: 0, index: 0 },
+        { name: "Grilled Cheese", src: "FRIDGE/FOOD/GrilledCheese.png", pos: 0, index: 0 },
+        { name: "Fruit", src: "FRIDGE/FOOD/Fruit.png", pos: 0, index: 0 },
+        { name: "Donut", src: "FRIDGE/FOOD/Donut.png", pos: 0, index: 0 },
+        { name: "Burger", src: "FRIDGE/FOOD/Burger.png", pos: 0, index: 0 },
+        { name: "Cheese", src: "FRIDGE/FOOD/Cheese.png", pos: 0, index: 0 },
+        { name: "Ketchup", src: "FRIDGE/FOOD/Ketchup.png", pos: 0, index: 0 },
+        { name: "Mustard", src: "FRIDGE/FOOD/Mustard.png", pos: 0, index: 0 },
+        { name: "Milk", src: "FRIDGE/FOOD/Milk.png", pos: 0, index: 0},
+        { name: "Butter", src: "FRIDGE/FOOD/Butter.png", pos: 0, index: 0 },
+        { name: "Salad", src: "FRIDGE/FOOD/Salad.png", pos: 0, index: 0 },
+        { name: "Soup", src: "SOUP/topleft.png", pos: 0, index: 0 },
+
     ]
 
     const [foodArray, setFoodArray] = useState(shuffleArray(foods));
@@ -50,14 +60,17 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
     [foods.map(food => ({
         ...food,
         pos: Math.random() * 20 + 35,
+        index: Math.trunc(Math.random() * 100 + 20),
     })),
     foods.filter(food => food.name !== goalFood?.name).map(food => ({
         ...food,
         pos: Math.random() * 20 + 35,
+        index: Math.trunc(Math.random() * 100 + 20),
     })), 
     foods.filter(food => food.name !== goalFood?.name).map(food => ({
         ...food,
         pos: Math.random() * 20 + 35,
+        index: Math.trunc(Math.random() * 100 + 20),
     }))]));
 
     function shuffleArray<T>(array: T[]): T[] {
@@ -88,7 +101,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
     const fridgeAudio =  useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
-        fridgeAudio.current = new Audio("/SOUP/stirnoise.m4a");
+        fridgeAudio.current = new Audio("/FRIDGE/rummage.m4a");
         fridgeAudio.current.volume = volume / 100;
         fridgeAudio.current.preload = "auto";
     }, [])
@@ -101,6 +114,11 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
     }, [lost, onLose]);
 
     const handleClick = (clickedFood: FoodType, index: number) => {
+
+        if (fridgeAudio.current) {
+            fridgeAudio.current.play();
+        }
+
         if (clickedFood.name === goalFood?.name)
             onWin();
         else {
@@ -120,14 +138,14 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
         <div>
             <div className="flex min-h-screen center items-center justify-center bg-zinc-50 font-sans dark:bg-black" style={{flexDirection: "column"}}>
             
-            {(timeLimit / 10 > timeSpent) && goalFood && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:300, WebkitTextStroke:"2px black"}}>Find the {goalFood.name}</h1>}
+            {(1 > timeSpent) && goalFood && <h1 style={{color:"white", fontSize:"10rem", position:"absolute", bottom:"50vh", zIndex:10000, WebkitTextStroke:"2px black"}}>Find the {goalFood.name}</h1>}
 
             {foodStack[0].map((food, index) => (
                 <img
                     src={food.src}
                     key={food.name}
                     onClick={() => handleClick(food, 0)}
-                    style={foodStyle(food.pos, index)}
+                    style={foodStyle(food.pos, food.index, 0)}
                 />
             ))}
 
@@ -136,7 +154,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
                     src={food.src}
                     key={food.name}
                     onClick={() => handleClick(food, 1)}
-                    style={foodStyle(food.pos, index)}                />
+                    style={foodStyle(food.pos, food.index, 1)}                />
             ))}
 
             {foodStack[2].map((food, index) => (
@@ -144,7 +162,7 @@ export default function FridgeGame({onWin, onLose, volume, lives}: GameProps) {
                     src={food.src}
                     key={food.name}
                     onClick={() => handleClick(food, 2)}
-                    style={foodStyle(food.pos, index)}
+                    style={foodStyle(food.pos, food.index, 2)}
                 />
             ))}
 
