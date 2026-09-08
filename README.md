@@ -19,6 +19,8 @@ This game will have the player attempt to cook food under a certain amount of ti
 
 The game will be developed using React, Postgres and Express.
 
+The game will be hosted at cooking-ware.com
+
 ## Budget
 
 To date, there have been no expenditures for this project.
